@@ -17,13 +17,22 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="category_id">Categoria</label>
+                    <label for="category_id">Category</label>
                     <select class="form-control" id="category_id" name="category_id">
                         <option value="">No category</option>
                         @foreach ($categories as $category)
                             <option {{old('category_id') == $category->id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
                         @endforeach
                     </select>
+                </div>
+
+                <div class="form-group">
+                    @foreach ($tags as $tag)
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="tag_{{$tag->id}}" name="tags[]" value="{{$tag->id}}" {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}}>
+                            <label class="custom-control-label" for="tag_{{$tag->id}}">{{$tag->name}}</label>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="form-group">

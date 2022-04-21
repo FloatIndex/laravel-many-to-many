@@ -16,6 +16,7 @@
                             <th scope="col">Content</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Tags</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -27,7 +28,8 @@
                                 <td>{{$post->title}}</td>
                                 <td>{{substr($post->content, 0, 30)}}</td>
                                 <td>{{$post->slug}}</td>
-                                <td>{{ !empty($post->category) ? $post->category->name : '-' }}</td> {{-- con category richiamo la funzione category() del model Post--}}
+                                <td>{{ !empty($post->category) ? $post->category->name : 'ND' }}</td> {{-- con category richiamo la funzione category() del model Post--}}
+                                <td>{{ !empty($post->tag) ? $post->tag->name : 'ND' }}</td> {{-- con tag richiamo la funzione tag() del model Post--}}
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.posts.show', $post) }}">Show</a>
                                     <a class="btn btn-warning" href="{{ route('admin.posts.edit', $post) }}">Edit</a>
