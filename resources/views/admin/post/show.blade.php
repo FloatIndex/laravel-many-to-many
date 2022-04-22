@@ -4,20 +4,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-
-            <h1>{{$post->title}}</h1>
-
-            <p><small>Slug: {{$post->slug}}</small></p>
-
-            <p>{{ !empty($post->category) ? $post->category->name : 'ND' }}</p>
             
-            <div>
+            <h1>TITLE: {{$post->title}}</h1>
+
+            <p><strong>SLUG: </strong><small>{{$post->slug}}</small></p>
+
+            <p><strong>CATEGORY: </strong>{{ !empty($post->category) ? $post->category->name : 'ND' }}</p>
+            
+            <p>
+                <strong>TAGS: </strong>
                 @foreach ($post->tags as $tag)
                     <span class="badge badge-info">{{$tag->name}}</span>
                 @endforeach
-            </div>
+            </p>
 
-            <p>{{$post->content}}</p>
+            <p><strong>CONTENT: </strong>{{$post->content}}</p>
 
             <a class="btn btn-info" href="{{ route('admin.posts.index') }}">Back to posts list</a>
 

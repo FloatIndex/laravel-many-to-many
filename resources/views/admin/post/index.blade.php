@@ -10,7 +10,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">ID</th>
                             <th scope="col">Title</th>
                             <th scope="col">Content</th>
@@ -23,13 +22,21 @@
                     <tbody>
                         @foreach ($posts as $post)
                             <tr class="align-middle">
-                                <th scope="row">1</th>
-                                <td>{{$post->id}}</td>
+                                <th scope="row">{{$post->id}}</th>
                                 <td>{{$post->title}}</td>
                                 <td>{{substr($post->content, 0, 30)}}</td>
                                 <td>{{$post->slug}}</td>
                                 <td>{{ !empty($post->category) ? $post->category->name : 'ND' }}</td> {{-- con category richiamo la funzione category() del model Post--}}
-                                <td>{{ !empty($post->tag) ? $post->tag->name : 'ND' }}</td> {{-- con tag richiamo la funzione tag() del model Post--}}
+                                <td>
+                                    {{-- {{ !empty($post->tags) ? $post->tags->name : 'ND' }} --}}
+                                    @if($post->tags->isNotEmpty())
+                                        @foreach ($post->tags as $tag)
+                                            <span class="badge badge-info mb-1">{{$tag->name}}</span><br>
+                                        @endforeach
+                                    @else
+                                        ND
+                                    @endif
+                                </td>
                                 <td>
                                     <a class="btn btn-info" href="{{ route('admin.posts.show', $post) }}">Show</a>
                                     <a class="btn btn-warning" href="{{ route('admin.posts.edit', $post) }}">Edit</a>
